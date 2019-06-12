@@ -1491,11 +1491,13 @@ skip_nfcc_hw_check:
 	}
 
 #ifdef NFC_KERNEL_BU
-	r = nqx_clock_select(nqx_dev);
-	if (r < 0) {
-		dev_err(&client->dev,
-			"%s: nqx_clock_select failed\n", __func__);
-		goto err_clock_en_failed;
+	if (nqx_dev->pdata->clk_pin_voting) {
+		r = nqx_clock_select(nqx_dev);
+		if (r < 0) {
+			dev_err(&client->dev,
+				"%s: nqx_clock_select failed\n", __func__);
+			goto err_clock_en_failed;
+		}
 	}
 	gpio_set_value(platform_data->en_gpio, 1);
 #endif
