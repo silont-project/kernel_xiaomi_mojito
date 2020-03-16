@@ -4294,8 +4294,10 @@ retry:
 		goto nopage;
 
 	if (fatal_signal_pending(current) && !(gfp_mask & __GFP_NOFAIL) &&
-			(gfp_mask & __GFP_FS))
+			(gfp_mask & __GFP_FS)) {
+		gfp_mask |= __GFP_NOWARN;
 		goto nopage;
+	}
 
 	/* Try direct reclaim and then allocating */
 	if (!used_vmpressure)
