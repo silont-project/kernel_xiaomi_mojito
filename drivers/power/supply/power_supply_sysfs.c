@@ -115,10 +115,10 @@ static ssize_t power_supply_show_property(struct device *dev,
 					attr->attr.name);
 			else if (ret != -ENODEV && ret != -EAGAIN)
 			#ifdef CONFIG_TARGET_PROJECT_J20C
-				dev_err(dev, "driver failed to report `%s' property: %zd\n",
+				dev_dbg(dev, "driver failed to report `%s' property: %zd\n",
 					attr->attr.name, ret);
 			#else
-				dev_err_ratelimited(dev,
+				dev_dbg(dev,
 					"driver failed to report `%s' property: %zd\n",
 					attr->attr.name, ret);
 			#endif

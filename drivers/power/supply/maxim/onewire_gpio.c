@@ -23,15 +23,15 @@
 #include <linux/spinlock.h>
 
 #ifdef CONFIG_TARGET_PROJECT_J20C
-#define ow_info	pr_err
-#define ow_dbg	pr_err
+#define ow_info	pr_debug
+#define ow_dbg	pr_debug
 #define ow_err	pr_err
 #else
-#define ow_info	pr_info
+#define ow_info	pr_debug
 #define ow_dbg	pr_debug
-#define ow_err	pr_debug
+#define ow_err	pr_err
 #endif
-#define ow_log	pr_err
+#define ow_log	pr_debug
 
 #define DRV_STRENGTH_16MA		(0x7 << 6)
 #define DRV_STRENGTH_12MA		(0x5 << 6)
