@@ -1793,7 +1793,7 @@ static enum power_supply_property smb5_batt_props[] = {
 #endif
 	POWER_SUPPLY_PROP_CHARGE_AWAKE_STATE,
 	POWER_SUPPLY_PROP_TIME_TO_FULL_NOW,
-
+	POWER_SUPPLY_PROP_TYPEC_MODE,
 };
 
 #define DEBUG_ACCESSORY_TEMP_DECIDEGC	250
@@ -1965,6 +1965,12 @@ static int smb5_batt_get_prop(struct power_supply *psy,
 	case POWER_SUPPLY_PROP_TIME_TO_FULL_NOW:
 		rc = smblib_get_prop_from_bms(chg,
 				POWER_SUPPLY_PROP_TIME_TO_FULL_NOW, val);
+
+	case POWER_SUPPLY_PROP_TYPEC_MODE:
+		if (chg->connector_type == POWER_SUPPLY_CONNECTOR_MICRO_USB)
+			val->intval = POWER_SUPPLY_TYPEC_NONE;
+		else
+			val->intval = chg->typec_mode;
 		break;
 	default:
 		pr_err("batt power supply prop %d not supported\n", psp);
