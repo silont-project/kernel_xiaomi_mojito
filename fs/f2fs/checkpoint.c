@@ -1667,7 +1667,7 @@ stop:
 out:
 	if (cpc->reason != CP_RESIZE)
 		up_write(&sbi->cp_global_sem);
-	return err;
+        return err;
 }
 
 void f2fs_init_ino_entry_info(struct f2fs_sb_info *sbi)
