@@ -1596,7 +1596,7 @@ int fts_fwupg_get_ver_in_tp_lct(void)
         return ret;
     }
 	FTS_INFO("fw version %02x", ver);
-	snprintf(tp_info_buf, PAGE_SIZE, "[Vendor]SAMSUNG,[FW]0x%02x,[IC]ft3418\n", ver);
+	snprintf(tp_info_buf, sizeof(tp_info_buf), "[Vendor]SAMSUNG,[FW]0x%02x,[IC]ft3418\n", ver);
 	update_lct_tp_info(tp_info_buf, NULL);
 
     return 0;
